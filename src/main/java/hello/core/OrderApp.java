@@ -15,10 +15,10 @@ public class OrderApp {
         OrderService orderSerivce = new OrderServiceImpl();
 
         Long memberId = 1L;
-        Member member = new Member(memberId,"memberA", Grade.BASIC);
+        Member member = new Member(memberId,"memberA", Grade.VIP);
         memberService.join(member);
 
-        Order order = orderSerivce.crateOrder(memberId,"itemA",10000);
+        Order order = orderSerivce.crateOrder(memberId,"itemA",20000);
 
         System.out.println("order = " + order);
     }
