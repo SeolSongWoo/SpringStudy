@@ -5,12 +5,13 @@ import hello.core.member.Member;
 import hello.core.member.MemberService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class MemberApp {
 
     public static void main(String[] args) {
 
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext applicationContext = new GenericXmlApplicationContext("/AppConfig.xml");
 
         MemberService memberService = applicationContext.getBean("memberService",MemberService.class);
 
