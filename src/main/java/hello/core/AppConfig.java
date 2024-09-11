@@ -14,8 +14,26 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
+    //@Bean memberService -> new MemoryMemberRepository()
+    //@Bean orderService -> new MemoryMemberRepository()
+    //생성자 2번 호출, 싱글톤이 깨지지않은가? -> ConfigurationSingletonTest 참조
+
+    //call AppConfig.memberService ->
+    //call AppConfig.memberRepository ->
+    //call AppConfig.memberRepository ->
+    //call AppConfig.orderService
+    //call AppConfig.memberRepository ->
+
+    //실제
+    //call AppConfig.memberRepository
+    //call AppConfig.memberService
+    //call AppConfig.OrderService
+
+
+
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
@@ -26,11 +44,13 @@ public class AppConfig {
 
     @Bean
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 }
