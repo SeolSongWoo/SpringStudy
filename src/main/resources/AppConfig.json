@@ -1,0 +1,32 @@
+{
+  "beans": [
+    {
+      "id": "memberService",
+      "class": "hello.core.member.MemberServiceImpl",
+      "constructor": [{
+        "name": "memberRepository",
+        "ref": "memberRepository"
+      }]
+    },
+    {
+      "id": "OrderService",
+      "class": "hello.core.order.OrderServiceImpl",
+      "constructor": [{
+        "name": "memberRepository",
+        "ref": "memberRepository"
+      },
+      {
+        "name": "discountPolicy",
+        "ref": "discountPolicy"
+      }]
+    },
+    {
+      "id": "discountPolicy",
+      "class": "hello.core.discount.RateDiscountPolicy"
+    },
+    {
+      "id": "memberRepository",
+      "class": "hello.core.member.MemoryMemberRepository"
+    }
+  ]
+}
